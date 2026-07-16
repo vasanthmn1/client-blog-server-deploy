@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  client-blog-server:
+    image: vasucode/client-blog-server:1.1
+    container_name: client-blog-server
+
+    ports:
+      - "5002:5002"
+
+    env_file:
+      - .env
+
+    environment:
+      PORT: 5002
+      MONGODB_URI: mongodb://mongo:27017/hybrid_client_blogs
+
+    volumes:
+      - ./uploads:/app/uploads
+
+    depends_on:
+      - mongo
+
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    container_name: mongo
+
+    volumes:
+      - mongo_data:/data/db
+
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
