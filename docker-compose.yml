@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   client-blog-server:
-    image: vasucode/client-blog-server:1.1
+    image: vasucode/client-blog-server:1.2
     container_name: client-blog-server
 
     ports:
